@@ -509,7 +509,7 @@ describe('watcher', () => {
         });
       });
 
-      ((backend === 'watchman') ? describe.skip : describe)('multiple', () => {
+      describe('multiple', () => {
         it('should support multiple watchers for the same directory', async () => {
           let dir = path.join(
             fs.realpathSync(require('os').tmpdir()),
@@ -523,8 +523,11 @@ describe('watcher', () => {
               let sub = await watcher.subscribe(
                 dir,
                 async (err, events) => {
-                  setImmediate(() => resolve(events));
-                  await sub.unsubscribe();
+                  setImmediate(async () => {
+                    await sub.unsubscribe();
+
+                    resolve(events)
+                  });
                 },
                 {backend},
               );
@@ -557,8 +560,11 @@ describe('watcher', () => {
               let sub = await watcher.subscribe(
                 dir,
                 async (err, events) => {
-                  setImmediate(() => resolve(events));
-                  await sub.unsubscribe();
+                  setImmediate(async () => {
+                    await sub.unsubscribe();
+
+                    resolve(events)
+                  });
                 },
                 {backend, ignore},
               );
@@ -597,8 +603,11 @@ describe('watcher', () => {
               let sub = await watcher.subscribe(
                 dir,
                 async (err, events) => {
-                  setImmediate(() => resolve(events));
-                  await sub.unsubscribe();
+                  setImmediate(async () => {
+                    await sub.unsubscribe();
+
+                    resolve(events)
+                  });
                 },
                 {backend},
               );
