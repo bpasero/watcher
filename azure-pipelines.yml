@@ -7,17 +7,17 @@ trigger:
       - '*'
 
 jobs:
-  - template: azure-pipelines-template.yml
-    parameters:
-      name: macOS
-      vmImage: macOS-latest
-      arch: x64
+  # - template: azure-pipelines-template.yml
+  #   parameters:
+  #     name: macOS
+  #     vmImage: macOS-latest
+  #     arch: x64
 
-  - template: azure-pipelines-template.yml
-    parameters:
-      name: appleSilicon
-      vmImage: macos-11
-      arch: arm64
+  # - template: azure-pipelines-template.yml
+  #   parameters:
+  #     name: appleSilicon
+  #     vmImage: macos-11
+  #     arch: arm64
 
   - template: azure-pipelines-template.yml
     parameters:
@@ -33,21 +33,21 @@ jobs:
       container: jasperdm/centos-watchman:latest
       arch: x64
 
-  - template: azure-pipelines-template.yml
-    parameters:
-      name: Windows
-      vmImage: vs2017-win2016
-      arch: x64
+  # - template: azure-pipelines-template.yml
+  #   parameters:
+  #     name: Windows
+  #     vmImage: vs2017-win2016
+  #     arch: x64
 
   - ${{ if startsWith(variables['Build.SourceBranch'], 'refs/tags/v') }}:
     - job: Publish
       condition: succeeded()
       dependsOn:
-        - macOS
-        - appleSilicon
+        # - macOS
+        # - appleSilicon
         - Alpine
         - CentOS7
-        - Windows
+        # - Windows
       pool: 
         vmImage: ubuntu-latest
       steps:
