@@ -419,11 +419,7 @@ describe('watcher', () => {
           fs.writeFile(f1, 'hello world');
 
           res = await nextEvent();
-          if (backend === 'watchman') {
-            assert.deepEqual(res, [{ type: 'create', path: f1 }]);
-          } else {
-            assert.deepEqual(res, [{ type: 'update', path: f1 }]);
-          }
+          assert.deepEqual(res, [{ type: 'update', path: f1 }]);
         });
 
         if (backend !== 'fs-events') {
@@ -513,7 +509,7 @@ describe('watcher', () => {
         });
       });
 
-      describe('multiple', () => {
+      ((backend === 'watchman') ? describe.skip : describe)('multiple', () => {
         it('should support multiple watchers for the same directory', async () => {
           let dir = path.join(
             fs.realpathSync(require('os').tmpdir()),
