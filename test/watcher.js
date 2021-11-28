@@ -419,7 +419,11 @@ describe('watcher', () => {
           fs.writeFile(f1, 'hello world');
 
           res = await nextEvent();
-          assert.deepEqual(res, [{ type: 'update', path: f1 }]);
+          if (backend === 'watchman') {
+            assert.deepEqual(res, [{ type: 'create', path: f1 }]);
+          } else {
+            assert.deepEqual(res, [{ type: 'update', path: f1 }]);
+          }
         });
 
         if (backend !== 'fs-events') {
