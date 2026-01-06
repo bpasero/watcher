@@ -1,13 +1,13 @@
 {
-  "name": "@parcel/watcher",
-  "version": "2.5.1",
+  "name": "@vscode/watcher",
+  "version": "2.5.1-vscode",
   "main": "index.js",
   "types": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/parcel-bundler/watcher.git"
+    "url": "https://github.com/bpasero/watcher.git"
   },
-  "description": "A native C++ Node module for querying and subscribing to filesystem events. Used by Parcel 2.",
+  "description": "A native C++ Node module for querying and subscribing to filesystem events. Used by VS Code.",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

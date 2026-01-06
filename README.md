@@ -1,3 +1,10 @@
+# Note: this is a temporary fork of @parcel/watcher
+
+This fork is not intended long term, but short term to:
+- include some bug fixes
+
+Original README from https://github.com/parcel-bundler/watcher below:
+
 # @parcel/watcher
 
 A native C++ Node module for querying and subscribing to filesystem events. Used by [Parcel 2](https://github.com/parcel-bundler/parcel).

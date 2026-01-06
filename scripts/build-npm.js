@@ -92,7 +92,7 @@ fs.writeFileSync(`${dir}/npm/watcher/package.json`, JSON.stringify(pkg, false, 2
 
 function buildNode(triple, t) {
   let pkg2 = { ...pkg };
-  pkg2.name = `@parcel/watcher-${t}`;
+  pkg2.name = `@vscode/watcher-${t}`;
   pkg2.os = [triple.platform];
   pkg2.cpu = [triple.arch];
   if (triple.libc) {
@@ -116,7 +116,7 @@ function buildNode(triple, t) {
     fs.mkdirSync(dir + '/npm/' + t);
   } catch (err) { }
   fs.writeFileSync(`${dir}/npm/${t}/package.json`, JSON.stringify(pkg2, false, 2) + '\n');
-  fs.copyFileSync(`${dir}/prebuilds/${triple.platform}-${triple.arch}/@parcel+watcher.${triple.libc || 'glibc'}.node`, `${dir}/npm/${t}/watcher.node`);
-  fs.writeFileSync(`${dir}/npm/${t}/README.md`, `This is the ${t} build of @parcel/watcher. See https://github.com/parcel-bundler/watcher for details.`);
+  fs.copyFileSync(`${dir}/prebuilds/${triple.platform}-${triple.arch}/@vscode+watcher.${triple.libc || 'glibc'}.node`, `${dir}/npm/${t}/watcher.node`);
+  fs.writeFileSync(`${dir}/npm/${t}/README.md`, `This is the ${t} build of @vscode/watcher. See https://github.com/parcel-bundler/watcher for details.`);
   fs.copyFileSync(`${dir}/LICENSE`, `${dir}/npm/${t}/LICENSE`);
 }
